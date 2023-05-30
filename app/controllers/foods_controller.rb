@@ -1,7 +1,11 @@
 class FoodsController < ApplicationController
   load_and_authorize_resource
   def index
-    @foods = Food.where(user_id: current_user.id)
+    if current_user
+      @foods = Food.where(user_id: current_user.id)
+    else
+      redirect_to user_session_path
+    end
   end
 
   def new
@@ -12,9 +16,9 @@ class FoodsController < ApplicationController
     # authorize! :create, @food
     @food = Food.new(food_params)
     @food.user_id = current_user.id
-    
+
     if @food.save
-      redirect_to '/foods', notice:"Food was successfully created"
+      redirect_to '/foods', notice: 'Food was successfully created'
     else
       render :new
     end

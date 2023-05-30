@@ -1,9 +1,9 @@
 class Ability
-    include CanCan::Ability
-  
-    def initialize(user)
+  include CanCan::Ability
 
-        can :manage, Food, :user_id=> user.id
+  def initialize(user)
+    can :read, :all
+    can :manage, Food, user_id: user.id
     #   return unless user.present?
     #   can :read, :all
     #   can :create, :all
@@ -13,11 +13,11 @@ class Ability
     #   can :destroy, Comment do |comment|
     #     comment.author == user
     #   end
-  
+
     #   return unless user.role == 'admin'
-  
+
     #   can :manage, :all
     #   can :destroy, Post
     #   can :destroy, Comment
-    end
   end
+end
