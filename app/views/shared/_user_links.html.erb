@@ -1,0 +1,9 @@
+<div class='d-flex gap-4 justify-content-end'>
+<% if user_signed_in?  %>
+  <%= link_to "Edit profile", edit_user_registration_path, class: 'btn btn-primary text-decoration-none fit-contents' %>
+  <%= button_to "Logout", destroy_user_session_path, method: :delete, class: 'btn btn-primary text-decoration-none'  %>
+<% else %>
+  <%= link_to "Sign up", new_user_registration_path, class: 'btn btn-primary text-decoration-none fit-contents'  %>
+  <%= link_to "Login", new_user_session_path, class: 'btn btn-primary text-decoration-none fit-contents' %>
+<% end %>
+</div>
