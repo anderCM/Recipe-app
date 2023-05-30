@@ -12,6 +12,12 @@
 
   <body>
     <main class="container mx-auto mt-28 px-5 flex">
+      <%= render 'shared/user_links' %>
+      <% flash.each do |type, msg| %>
+        <div class="ms-5 me-5 alert notice alert-success" role="alert">
+          <%= msg %>
+        </div>
+      <% end %>
       <%= yield %>
     </main>
   </body>
