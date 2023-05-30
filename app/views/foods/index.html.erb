@@ -1,1 +1,26 @@
 <h1>Hello food </h1>
+
+<%= link_to "Add Food", '/foods/new',  class:"bg-green-600 px-4 py float-right text-white" %>
+
+<table class="w-full text-center border-separate border-spacing-4">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>measurement_unit</th>
+      <th>quantity</th>
+      <th>price</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+   <% @foods.each do |food| %>
+    <tr>
+        <td><%= food.name %></td>
+        <td><%= food.measurement_unit %></td>
+        <td><%= food.quantity %></td>
+        <td><%= food.price %></td>
+        <td class="bg-red-600 text-white rounded-t-lg"><%= button_to "Delete", '/foods/destroy' %></td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
