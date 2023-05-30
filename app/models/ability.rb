@@ -3,9 +3,19 @@ class Ability
   
     def initialize(user)
       return unless user.present?
+      can :manage, :all
+    #   can :create, :all
+    #   can :destroy, Post do |post|
+    #     post.author == user
+    #   end
+    #   can :destroy, Comment do |comment|
+    #     comment.author == user
+    #   end
   
-      can :read, :all
-      can :create, :all
-      
+    #   return unless user.role == 'admin'
+  
+    #   can :manage, :all
+    #   can :destroy, Post
+    #   can :destroy, Comment
     end
   end
