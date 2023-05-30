@@ -77,5 +77,6 @@ group :test do
   gem 'webdrivers'
 end
 
-gem 'cancancan'gem 'tailwindcss-rails', '~> 2.0'
+gem 'cancancan'
 
+gem 'tailwindcss-rails', '~> 2.0'
