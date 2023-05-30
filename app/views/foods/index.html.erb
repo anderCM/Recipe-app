@@ -1,1 +1,11 @@
 <h1>Hello food </h1>
+
+<%= link_to "Add Food", '/foods/new' %>
+
+<% @foods.each do |food| %>
+    <ul>
+        <li><%= food.name %></li>
+        <li><%= food.measurement_unit %></li>
+        <li><%= food.price %></li>
+    </ul>
+<% end %>
