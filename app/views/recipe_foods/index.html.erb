@@ -4,7 +4,7 @@
   <% @recipe_names.each do |recipe| %>
 
 <%= link_to "/recipes/#{recipe.id}" do %>
-<div class="flex justify-between border-4 border-sky-400 my-5 p-5">
+<div class="flex justify-between border-4 border-green-600 my-5 p-5 bg-gray-800 text-white rounded-lg">
     <div >
       <h2><%= recipe.name %></h2>
       <h3>By : <%= recipe.user.name %></h3>
