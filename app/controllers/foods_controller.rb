@@ -1,7 +1,7 @@
 class FoodsController < ApplicationController
-  # load_and_authorize_resource
+  load_and_authorize_resource
   def index
-    @foods = Food.all
+    @foods = Food.where(user_id: current_user.id)
   end
 
   def new
@@ -9,7 +9,7 @@ class FoodsController < ApplicationController
   end
 
   def create
-    # authorize! :manage, @food
+    # authorize! :create, @food
     @food = Food.new(food_params)
     @food.user_id = current_user.id
     
