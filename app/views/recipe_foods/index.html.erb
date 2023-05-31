@@ -10,7 +10,7 @@
       <h3>By : <%= recipe.user.name %></h3>
     </div>
       <% recipe.recipe_foods.each do |recipe_food| %>
-        <% price = price + recipe_food.quantity * Food.find(recipe_food.food_id).price %>
+        <% price = price + recipe_food.quantity * recipe_food.food.price %>
       <% end %>
     <div>
       <p>Total Food Items: <%= recipe.recipe_foods.length %></p>
