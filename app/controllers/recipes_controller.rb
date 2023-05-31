@@ -26,6 +26,16 @@ class RecipesController < ApplicationController
     @recipe_foods = RecipeFood.includes(:food).find(params[:id])
   end
 
+  def destroy_food
+    @recipe_food = Food.includes(:food).where(params[:id])
+    puts @recipe_food.inspect
+    if @recipe_food.destroy
+      redirect_to recipe_path(@recipe_food), notice: "Food was deleted successfully"
+    else
+      redirect_to recipe_path(@recipe_food), notice: "Failed to delete food"
+    end
+  end
+
   def destroy
     @recipe = Recipe.find(params[:id])
 

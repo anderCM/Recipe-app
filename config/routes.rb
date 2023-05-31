@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   resources :recipes
   
   get '/public_recipes', to: "recipe_foods#index"
+  delete '/recipes/destroy/:id', to: "recipes#destroy_food"
 end

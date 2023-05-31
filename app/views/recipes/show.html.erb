@@ -11,11 +11,13 @@
 <%# form for toggle public/private %>
 </div>
 
+<% if !@recipes.public? && user_signed_in? %>
 <div class="flex justify-between">
     <%= button_to "Generate shopping list" , '/', class: "border border-blue-400 px-2 py-1 hover:bg-neutral-300" %>
 
     <%= button_to "Add ingredient" , '/', class: "border border-blue-400 px-2 py-1 hover:bg-neutral-300" %>
 </div>
+<% end %>
 
 <div>
 <table class="w-full text-center border-separate border-spacing-4">
@@ -32,7 +34,9 @@
         <td><%= @recipe_foods.food.name %></td>
         <td><%= @recipe_foods.food.quantity %></td>
         <td><%= @recipe_foods.food.price %></td>
-        <td class="bg-red-600 text-white rounded-lg"><%= button_to "Delete", '/foods/destroy' %></td>
+        <% if !@recipes.public? && user_signed_in? %>
+        <td class="bg-red-600 text-white rounded-lg"><%= button_to "Delete", "/recipes/destroy/#{@recipe_foods.id}", method: :delete, data: {confirm: "Are you sure?"} %></td>
+        <% end %>
     </tr>
   </tbody>
 </table>
