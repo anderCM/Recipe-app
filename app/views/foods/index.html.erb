@@ -1,15 +1,15 @@
 <h1>Hello food </h1>
 
-<%= link_to "Add Food", '/foods/new',  class:"bg-green-600 px-4 py float-right text-white rounded" %>
+<%= link_to "Add Food", '/foods/new',  class:"bg-green-600 px-4 py float-right text-white rounded my-5" %>
 
-<table class="w-full text-center border-separate border-spacing-4">
+<table class="w-full text-left table-auto  border-separate border-spacing-4 border border-neutral-400 ">
   <thead>
     <tr>
       <th>Name</th>
       <th>measurement_unit</th>
       <th>quantity</th>
       <th>price</th>
-      <th></th>
+      <th>Action</th>
     </tr>
   </thead>
   <tbody>
@@ -19,7 +19,7 @@
         <td><%= food.measurement_unit %></td>
         <td><%= food.quantity %></td>
         <td>$<%= food.price %></td>
-        <td class="bg-red-600 text-white rounded"><%= button_to "Delete", food_path(food) , method: :delete, data: {confirm: "Are you sure you want to delete?"} %></td>
+        <td><%= button_to "Delete", food_path(food) , method: :delete, data: {confirm: "Are you sure you want to delete?"}, class:"bg-red-600 text-white rounded  w-full" %></td>
     </tr>
 <% end %>
   </tbody>
