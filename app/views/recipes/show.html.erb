@@ -1,1 +1,39 @@
-recipe list
+
+<h1>Recipe Details</h1>
+
+<div>
+    <p>Preparation Time: <%= ((Time.current - @recipes.preparation_time.to_time) / 1.hour).to_i %> hr</p>
+    <p>Cooking Time: <%= ((Time.current - @recipes.cooking_time.to_time) / 1.hour).to_i %> hr </p>
+    <P> <%= @recipes.description %> </p>
+</div>
+
+<div>
+<%# form for toggle public/private %>
+</div>
+
+<div class="flex justify-between">
+    <%= button_to "Generate shopping list" , '/', class: "border border-blue-400 px-2 py-1 hover:bg-neutral-300" %>
+
+    <%= button_to "Add ingredient" , '/', class: "border border-blue-400 px-2 py-1 hover:bg-neutral-300" %>
+</div>
+
+<div>
+<table class="w-full text-center border-separate border-spacing-4">
+  <thead>
+    <tr>
+      <th>Food</th>
+      <th>Quantity</th>
+      <th>Value</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+        <td><%= @recipe_foods.food.name %></td>
+        <td><%= @recipe_foods.food.quantity %></td>
+        <td><%= @recipe_foods.food.price %></td>
+        <td class="bg-red-600 text-white rounded-lg"><%= button_to "Delete", '/foods/destroy' %></td>
+    </tr>
+  </tbody>
+</table>
+</div>
