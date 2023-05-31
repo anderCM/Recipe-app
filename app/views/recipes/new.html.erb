@@ -1,0 +1,24 @@
+<%= form_with model:@recipe, url: recipes_path do |form| %>
+  <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
+      <div class="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
+          <h1 class="text-center text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Recipe details</h1>
+
+          <%= form.label :name, class: 'text-gray-800 text-sm font-bold leading-tight tracking-normal' %>
+          <%= form.text_field :name, class: 'mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border', placeholder: 'Soupe à l\'oignon' %>
+          
+          <%= form.label :preparation_time, class: 'text-gray-800 text-sm font-bold leading-tight tracking-normal' %>
+          <%= form.text_field :preparation_time, class: 'mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border', placeholder: '1' %>
+
+          <%= form.label :cooking_time, class: 'text-gray-800 text-sm font-bold leading-tight tracking-normal' %>
+          <%= form.text_field :cooking_time, class: 'mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border', placeholder: '1' %>
+          
+          <%= form.label :description, class: 'text-gray-800 text-sm font-bold leading-tight tracking-normal' %>
+          <%= form.text_area :description, class: 'mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border', placeholder: 'This soup is from French and...' %>
+
+          <div class="flex items-center justify-start w-full">
+                <%= form.submit "Add recipe", class: 'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-600 transition duration-150 ease-in-out hover:bg-green-500 bg-green-600 rounded text-white px-8 py-2 text-sm' %>
+                <button class="focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm" onclick="modalHandler()">Cancel</button>
+          </div>
+      </div>
+  </div>
+<% end %>

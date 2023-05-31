@@ -2,10 +2,12 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can :read, :all
-    can :create, User
-    can :manage, Food, user:
-    #   return unless user.present?
+    can :read, RecipeFood
+    can :read, Food
+    return unless user.present?
+
+    can :manage, :all, user:
+
     #   can :read, :all
     #   can :create, :all
     #   can :destroy, Post do |post|

@@ -11,11 +11,11 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="bg-gray-950">
     <main class="w-3/4 mx-auto">
       <%= render 'shared/user_links' %>
       <% flash.each do |type, msg| %>
-        <div class="text-green-600" role="alert">
+        <div class="rounded border border-solid border-2 shadow-md my-5 p-5" role="alert">
           <%= msg %>
         </div>
       <% end %>

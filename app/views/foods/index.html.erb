@@ -1,26 +1,27 @@
-<h1>Hello food </h1>
-
-<%= link_to "Add Food", '/foods/new',  class:"bg-green-600 px-4 py float-right text-white rounded my-5" %>
-
-<table class="w-full text-left table-auto  border-separate border-spacing-4 border border-neutral-400 ">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>measurement_unit</th>
-      <th>quantity</th>
-      <th>price</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-   <% @foods.each do |food| %>
-    <tr>
-        <td><%= food.name %></td>
-        <td><%= food.measurement_unit %></td>
-        <td><%= food.quantity %></td>
-        <td>$<%= food.price %></td>
+<div role="alert" class="container mx-auto ">
+  <div class="flex justify-end my-4">
+    <%= link_to "Add Food", '/foods/new',  class:"focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-600 transition duration-150 ease-in-out hover:bg-green-500 bg-green-600 rounded text-white px-8 py-2 text-sm" %>
+  </div>
+  <table class="w-full text-center border-separate border-spacing-4 bg-gray-800 rounded">
+    <thead>
+      <tr class="text-white">
+        <th>Name</th>
+        <th>Measurement_unit</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+     <% @foods.each do |food| %>
+      <tr>
+          <td><%= food.name %></td>
+          <td><%= food.measurement_unit %></td>
+          <td><%= food.quantity %></td>
+          <td>$<%= food.price %></td>
         <td><%= button_to "Delete", food_path(food) , method: :delete, data: {confirm: "Are you sure you want to delete?"}, class:"bg-red-600 text-white rounded  w-full" %></td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
+      </tr>
+  <% end %>
+    </tbody>
+  </table>
+</div>
