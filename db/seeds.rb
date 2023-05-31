@@ -13,27 +13,30 @@ user = User.create!(
   email: Faker::Internet.email,
   password: Faker::Internet.password)
 end
+user = User.create!(
+  name: 'Microverse admin',
+  email: 'admin@admin.com',
+  password: '12345678')
 
-  User.all.each do |user|
-    5.times do
-      food = Food.create!(
-        name: Faker::Food.unique.ingredient, 
-        measurement_unit: Faker::Food.measurement,
-        price: Faker::Number.decimal(l_digits: 2),
-        quantity: Faker::Number.between(from: 1, to: 10),
-        user: user
-      )
-    recipe = Recipe.create(
-      name: Faker::Food.dish,
-      preparation_time: Faker::Time.between(from: DateTime.now, to: DateTime.now + 7),
-      cooking_time: Faker::Time.between(from: DateTime.now, to: DateTime.now + 7),
-      description: Faker::Lorem.paragraph,
-      public: Faker::Boolean.boolean,
-      user: user
-    )
-    foods = Food.limit(5)
-    foods.each do |food|
-        recipe.recipe_foods.create(food: food, quantity: Faker::Number.between(from: 1, to: 5))
-    end
-  end
+5.times do
+  food = Food.create!(
+    name: Faker::Food.unique.ingredient, 
+    measurement_unit: Faker::Food.measurement,
+    price: Faker::Number.decimal(l_digits: 2),
+    quantity: Faker::Number.between(from: 1, to: 10),
+    user: user
+  )
+recipe = Recipe.create(
+  name: Faker::Food.dish,
+  preparation_time: Faker::Time.between(from: DateTime.now, to: DateTime.now + 7),
+  cooking_time: Faker::Time.between(from: DateTime.now, to: DateTime.now + 7),
+  description: Faker::Lorem.paragraph,
+  public: Faker::Boolean.boolean,
+  user: user
+)
+foods = Food.limit(5)
+foods.each do |food|
+    recipe.recipe_foods.create(food: food, quantity: Faker::Number.between(from: 1, to: 5))
+end
+
 end
