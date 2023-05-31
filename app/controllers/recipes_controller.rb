@@ -2,7 +2,7 @@ class RecipesController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
   def index
-    @recipes = Recipe.where(user: current_user)
+    @recipes = Recipe.where(user: current_user).order(created_at: :desc)
   end
 
   def new
@@ -13,15 +13,27 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
     @recipe.user = current_user
 
-    if @recipe.save
-      redirect_to recipes_path, notice: 'Recipe was successfully created'
-    else
-      render :new
+    begin
+      @recipe.save
+      redirect_to recipes_path, notice: 'Recipe was created successfully'
+    rescue StandardError => e
+      render :new, alert: "Failed to delete recipe: #{e.message}"
     end
   end
 
   def show
     render :show
+  end
+
+  def destroy
+    @recipe = Recipe.find(params[:id])
+
+    begin
+      @recipe.destroy
+      redirect_to recipes_path, notice: 'Recipe deleted successfully.'
+    rescue StandardError => e
+      redirect_to recipes_path, alert: "Failed to delete recipe: #{e.message}"
+    end
   end
 
   private
