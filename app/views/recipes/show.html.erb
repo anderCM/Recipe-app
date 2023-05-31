@@ -2,16 +2,16 @@
 <h1>Recipe Details</h1>
 
 <div>
-    <p>Preparation Time: <%= ((Time.current - @recipes.preparation_time.to_time) / 1.hour).to_i %> hr</p>
-    <p>Cooking Time: <%= ((Time.current - @recipes.cooking_time.to_time) / 1.hour).to_i %> hr </p>
-    <P> <%= @recipes.description %> </p>
+    <p>Preparation Time: <%= ((Time.current - @recipe.preparation_time.to_time) / 1.hour).to_i %> hr</p>
+    <p>Cooking Time: <%= ((Time.current - @recipe.cooking_time.to_time) / 1.hour).to_i %> hr </p>
+    <P> <%= @recipe.description %> </p>
 </div>
 
 <div>
 <%# form for toggle public/private %>
 </div>
 
-<% if !@recipes.public? && user_signed_in? %>
+<% if !@recipe.public? && user_signed_in? %>
 <div class="flex justify-between">
     <%= button_to "Generate shopping list" , '/', class: "border border-blue-400 px-2 py-1 hover:bg-neutral-300" %>
 
@@ -30,14 +30,16 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-        <td><%= @recipe_foods.food.name %></td>
-        <td><%= @recipe_foods.food.quantity %></td>
-        <td><%= @recipe_foods.food.price %></td>
-        <% if !@recipes.public? && user_signed_in? %>
-        <td class="bg-red-600 text-white rounded-lg"><%= button_to "Delete", "/recipes/destroy/#{@recipe_foods.id}", method: :delete, data: {confirm: "Are you sure?"} %></td>
-        <% end %>
-    </tr>
+    <% @foods.each do |food| %>
+      <tr>
+          <td><%= food.name %></td>
+          <td><%= food.quantity %></td>
+          <td><%= food.price %></td>
+          <% if !@recipe.public? && user_signed_in? %>
+          <td class="bg-red-600 text-white rounded-lg"><%= button_to "Delete", "/recipes/destroy/#{food.id}", method: :delete, data: {confirm: "Are you sure?"} %></td>
+          <% end %>
+      </tr>
+    <% end %>
   </tbody>
 </table>
 </div>
