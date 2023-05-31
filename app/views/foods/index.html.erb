@@ -1,6 +1,6 @@
 <h1>Hello food </h1>
 
-<%= link_to "Add Food", '/foods/new',  class:"bg-green-600 px-4 py float-right text-white" %>
+<%= link_to "Add Food", '/foods/new',  class:"bg-green-600 px-4 py float-right text-white rounded" %>
 
 <table class="w-full text-center border-separate border-spacing-4">
   <thead>
@@ -18,8 +18,8 @@
         <td><%= food.name %></td>
         <td><%= food.measurement_unit %></td>
         <td><%= food.quantity %></td>
-        <td><%= food.price %></td>
-        <td class="bg-red-600 text-white rounded-lg"><%= button_to "Delete", '/foods/destroy' %></td>
+        <td>$<%= food.price %></td>
+        <td class="bg-red-600 text-white rounded"><%= button_to "Delete", food_path(food) , method: :delete, data: {confirm: "Are you sure you want to delete?"} %></td>
     </tr>
 <% end %>
   </tbody>
