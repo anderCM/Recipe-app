@@ -1,0 +1,22 @@
+<h1>Public Recipes </h1>
+
+<% price=0 %>
+  <% @recipe_names.each do |recipe| %>
+
+<%= link_to "/recipes/#{recipe.id}" do %>
+<div class="flex justify-between border-4 border-green-600 my-5 p-5 bg-gray-800 text-white rounded-lg">
+    <div >
+      <h2><%= recipe.name %></h2>
+      <h3>By : <%= recipe.user.name %></h3>
+    </div>
+      <% recipe.recipe_foods.each do |recipe_food| %>
+        <% price = price + recipe_food.quantity * recipe_food.food.price %>
+      <% end %>
+    <div>
+      <p>Total Food Items: <%= recipe.recipe_foods.length %></p>
+      <p>Total Price: <%= price %></p>
+    </div>
+      <% price = 0 %>
+</div>
+<% end %>
+  <% end %>

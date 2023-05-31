@@ -5,5 +5,7 @@ Rails.application.routes.draw do
   root :to => redirect('foods')
   resources :users, only: [:index, :show]
   resources :foods, only: [:index, :show, :new, :create, :destroy]
-
+  resources :recipes
+  
+  get '/public_recipes', to: "recipe_foods#index"
 end

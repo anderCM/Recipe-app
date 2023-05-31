@@ -3,7 +3,8 @@ class Ability
 
   def initialize(user)
     can :read, :all
-    can :manage, Food, user_id: user.id
+    can :create, User
+    can :manage, Food, user:
     #   return unless user.present?
     #   can :read, :all
     #   can :create, :all
