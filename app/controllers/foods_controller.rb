@@ -1,11 +1,8 @@
 class FoodsController < ApplicationController
+  before_action :authenticate_user!
   load_and_authorize_resource
   def index
-    if current_user
-      @foods = Food.where(user_id: current_user.id)
-    else
-      redirect_to user_session_path
-    end
+    @foods = Food.where(user_id: current_user.id)
   end
 
   def new
