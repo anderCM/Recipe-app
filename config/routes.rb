@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :recipes do
     member do
       get 'details'
-      delete 'destroy/:id', to: 'recipes#destroy_food'
+      delete 'destroy/:food_id', to: 'recipes#destroy_food'
       get 'new_ingredient', to:'recipes#new_ingredient'
       post 'add_ingredient', to:'recipes#add_ingredient'
     end

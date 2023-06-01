@@ -50,8 +50,10 @@ class RecipesController < ApplicationController
   end
 
   def destroy_food
-    @food = Food.find(params[:id])
-    if @food.destroy
+    @food = Food.find(params[:food_id])
+    @recipe = Recipe.find(params[:id])
+    @recipe_food = RecipeFood.find_by(food: @food, recipe: @recipe)
+    if @recipe_food.destroy
       redirect_to recipe_path(:id), notice: 'Food deleted successfully'
     else
       redirect_to recipe_path(:id), notice: 'Failed to delete food.'
