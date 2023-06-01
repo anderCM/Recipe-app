@@ -78,17 +78,16 @@ class RecipesController < ApplicationController
   end
 
   def update_toggle
-    toggle_value = params[:toggle].to_i == 1 ? true : false
+    toggle_value = params[:toggle].to_i == 1
     @recipe = Recipe.find(params[:id])
 
     @recipe.public = toggle_value
     if @recipe.save
-      flash[:notice] = "Recipe successfully updated."
+      flash[:notice] = 'Recipe successfully updated.'
       redirect_to recipe_path(params[:id])
     else
-      redirect_to recipe_path(params[:id]), notice: "Error with update."
+      redirect_to recipe_path(params[:id]), notice: 'Error with update.'
     end
-
   end
 
   private
