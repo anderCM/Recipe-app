@@ -15,5 +15,4 @@ Rails.application.routes.draw do
   end
   
   get '/public_recipes', to: "recipe_foods#index"
-  #delete '/recipes/destroy/:id', to: "recipes#destroy_food"
 end

@@ -27,9 +27,15 @@ class RecipesController < ApplicationController
 
   def add_ingredient
     @food = Food.new(food_params)
-    @food.user_id = current_user.id
-    if @food.save
-      redirect_to recipe_path(:id), notice: 'Food added successfully'
+    @food.user = current_user
+    @quantity = @food.quantity
+
+    @recipe = Recipe.find(params[:id])
+
+    @recipe_food = RecipeFood.new(food: @food, recipe: @recipe, quantity: @quantity)
+
+    if @recipe_food.save
+      redirect_to recipe_path(params[:id]), notice: 'Food added to recipe successfully'
     else
       render :new_ingredient
     end
