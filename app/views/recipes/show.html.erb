@@ -11,13 +11,12 @@
 <%# form for toggle public/private %>
 </div>
 
-<% if !@recipe.public? && user_signed_in? %>
 <div class="flex justify-between">
     <%= link_to "Generate shopping list" , details_recipe_path(@recipe), class: "border border-blue-400 px-2 py-1 hover:bg-neutral-300" %>
-
-    <%= link_to "Add ingredient" , new_ingredient_recipe_path(@recipe.id), class: "border border-blue-400 px-2 py-1 hover:bg-neutral-300" %>
+    <% if can? :destroy, @recipe %>
+      <%= link_to "Add ingredient" , new_ingredient_recipe_path(@recipe.id), class: "border border-blue-400 px-2 py-1 hover:bg-neutral-300" %>
+    <% end %>
 </div>
-<% end %>
 
 <div>
 <table class="w-full text-center border-separate border-spacing-4">
@@ -35,8 +34,8 @@
           <td><%= food.name %></td>
           <td><%= food.quantity %></td>
           <td><%= food.price %></td>
-          <% if can? :destroy, food %>
-          <td class="bg-red-600 text-white rounded-lg"><%= button_to "Delete", "/recipes/#{@recipe.id}/destroy/#{food.id}", method: :delete, data: {confirm: "Are you sure?"} %></td>
+          <% if can? :destroy, @recipe %>
+            <td class="bg-red-600 text-white rounded-lg"><%= button_to "Delete", "/recipes/#{@recipe.id}/destroy/#{food.id}", method: :delete, data: {confirm: "Are you sure?"} %></td>
           <% end %>
       </tr>
     <% end %>

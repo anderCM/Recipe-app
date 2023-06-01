@@ -8,7 +8,7 @@ class RecipesController < ApplicationController
   def new
     @recipes = Recipe.new
   end
-  
+
   def new_ingredient
     @food = Food.new
   end
@@ -29,7 +29,7 @@ class RecipesController < ApplicationController
     @food = Food.new(food_params)
     @food.user_id = current_user.id
     if @food.save
-      redirect_to recipe_path(:id), notice: "Food added successfully"
+      redirect_to recipe_path(:id), notice: 'Food added successfully'
     else
       render :new_ingredient
     end
@@ -46,9 +46,9 @@ class RecipesController < ApplicationController
   def destroy_food
     @food = Food.find(params[:id])
     if @food.destroy
-      redirect_to recipe_path(:id), notice: "Food deleted successfully"
+      redirect_to recipe_path(:id), notice: 'Food deleted successfully'
     else
-      redirect_to recipe_path(:id), notice: "Failed to delete food."
+      redirect_to recipe_path(:id), notice: 'Failed to delete food.'
     end
   end
 
