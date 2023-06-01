@@ -3,7 +3,7 @@ require 'faker'
 
 describe Food, type: :model do
   before do
-    @user = User.create!(
+    @user = User.new(
       name: Faker::Name.first_name,
       email: Faker::Internet.email,
       password: Faker::Internet.password
