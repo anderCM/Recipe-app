@@ -4,7 +4,7 @@ class Ability
   def initialize(user)
     can :read, RecipeFood
     can :read, Food
-    can :manage, Recipe
+    can :read, Recipe
     return unless user.present?
 
     can :manage, :all, user:

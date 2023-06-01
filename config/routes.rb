@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     member do
       get 'details'
       delete 'destroy/:id', to: 'recipes#destroy_food'
+      get 'new_ingredient', to:'recipes#new_ingredient'
+      post 'add_ingredient', to:'recipes#add_ingredient'
     end
   end
   

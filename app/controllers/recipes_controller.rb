@@ -8,6 +8,10 @@ class RecipesController < ApplicationController
   def new
     @recipes = Recipe.new
   end
+  
+  def new_ingredient
+    @food = Food.new
+  end
 
   def create
     @recipe = Recipe.new(recipe_params)
@@ -18,6 +22,16 @@ class RecipesController < ApplicationController
       redirect_to recipes_path, notice: 'Recipe was created successfully'
     rescue StandardError => e
       render :new, alert: "Failed to delete recipe: #{e.message}"
+    end
+  end
+
+  def add_ingredient
+    @food = Food.new(food_params)
+    @food.user_id = current_user.id
+    if @food.save
+      redirect_to recipe_path(:id), notice: "Food added successfully"
+    else
+      render :new_ingredient
     end
   end
 
@@ -59,5 +73,9 @@ class RecipesController < ApplicationController
 
   def recipe_params
     params.require(:recipe).permit(:name, :preparation_time, :cooking_time, :description)
+  end
+
+  def food_params
+    params.require(:food).permit(:name, :measurement_unit, :price, :quantity)
   end
 end
