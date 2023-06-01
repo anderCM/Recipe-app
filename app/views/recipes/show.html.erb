@@ -47,7 +47,7 @@
       <tr>
           <td><%= food.name %></td>
           <td><%= food.quantity %></td>
-          <td><%= food.price %></td>
+          <td>$<%= food.price * food.quantity %></td>
           <% if can? :destroy, @recipe %>
             <td ><%= button_to "Delete", "/recipes/#{@recipe.id}/destroy/#{food.id}", method: :delete, data: {confirm: "Are you sure?"}, class:"bg-red-600 w-full text-white rounded" %></td>
           <% end %>
