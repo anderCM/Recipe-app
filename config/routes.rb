@@ -5,8 +5,12 @@ Rails.application.routes.draw do
   root :to => redirect('foods')
   resources :users, only: [:index, :show]
   resources :foods, only: [:index, :show, :new, :create, :destroy]
-  resources :recipes
+  resources :recipes do
+    member do
+      get 'details'
+    end
+  end
   
   get '/public_recipes', to: "recipe_foods#index"
-  delete '/recipes/destroy/:id', to: "recipes#destroy_food"
+  #delete '/recipes/destroy/:id', to: "recipes#destroy_food"
 end

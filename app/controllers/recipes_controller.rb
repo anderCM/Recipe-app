@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :authenticate_user!, except: :show
+  before_action :authenticate_user!, except: %i[show details]
   load_and_authorize_resource
   def index
     @recipes = Recipe.where(user: current_user).order(created_at: :desc)
@@ -25,7 +25,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     @recipe_foods = RecipeFood.includes(:food).where(recipe: @recipe)
     @foods = @recipe_foods.map do |food|
-      Food.find(food.id)
+      Food.find(food.food_id)
     end
   end
 
@@ -38,6 +38,12 @@ class RecipesController < ApplicationController
     rescue StandardError => e
       redirect_to recipes_path, alert: "Failed to delete recipe: #{e.message}"
     end
+  end
+
+  def details
+    @recipe = Recipe.find(params[:id])
+    @recipe_foods = RecipeFood.includes(:food).where(recipe: @recipe)
+    @total_price = @recipe_foods.sum { |food| food.food.price * food.quantity }
   end
 
   private

@@ -13,7 +13,7 @@
 
 <% if !@recipe.public? && user_signed_in? %>
 <div class="flex justify-between">
-    <%= button_to "Generate shopping list" , '/', class: "border border-blue-400 px-2 py-1 hover:bg-neutral-300" %>
+    <%= link_to "Generate shopping list" , details_recipe_path(@recipe), class: "border border-blue-400 px-2 py-1 hover:bg-neutral-300" %>
 
     <%= button_to "Add ingredient" , '/', class: "border border-blue-400 px-2 py-1 hover:bg-neutral-300" %>
 </div>
