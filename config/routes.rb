@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       delete 'destroy/:food_id', to: 'recipes#destroy_food'
       get 'new_ingredient', to:'recipes#new_ingredient'
       post 'add_ingredient', to:'recipes#add_ingredient'
+      patch 'update_toggle', to:'recipes#update_toggle'
     end
   end
   
