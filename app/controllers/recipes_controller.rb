@@ -29,6 +29,15 @@ class RecipesController < ApplicationController
     end
   end
 
+  def destroy_food
+    @food = Food.find(params[:id])
+    if @food.destroy
+      redirect_to recipe_path(:id), notice: "Food deleted successfully"
+    else
+      redirect_to recipe_path(:id), notice: "Failed to delete food."
+    end
+  end
+
   def destroy
     @recipe = Recipe.find(params[:id])
 

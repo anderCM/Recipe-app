@@ -36,7 +36,7 @@
           <td><%= food.quantity %></td>
           <td><%= food.price %></td>
           <% if !@recipe.public? && user_signed_in? %>
-          <td class="bg-red-600 text-white rounded-lg"><%= button_to "Delete", "/recipes/destroy/#{food.id}", method: :delete, data: {confirm: "Are you sure?"} %></td>
+          <td class="bg-red-600 text-white rounded-lg"><%= button_to "Delete", "/recipes/#{@recipe.id}/destroy/#{food.id}", method: :delete, data: {confirm: "Are you sure?"} %></td>
           <% end %>
       </tr>
     <% end %>
