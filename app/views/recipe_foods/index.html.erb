@@ -1,20 +1,20 @@
-<h1>Public Recipes </h1>
+<h2 class="text-2xl font-bold text-center text-gray-700">Public Recipes </h2>
 
 <% price=0 %>
   <% @recipe_names.each do |recipe| %>
 
 <%= link_to "/recipes/#{recipe.id}" do %>
-<div class="flex justify-between border-4 border-green-600 my-5 p-5 bg-gray-800 text-white rounded-lg">
+<div class="bg-gray-800 hover:bg-gray-700 hover:scale-105 grid grid-cols-3 py-8 px-5 md:px-10 shadow-md rounded border border-gray-400 my-4 text-white ">
     <div >
-      <h2><%= recipe.name %></h2>
-      <h3>By : <%= recipe.user.name %></h3>
+      <h3 class="text-orange-500"><%= recipe.name %></h3>
+      <h4 class="text-green-600">By : <%= recipe.user.name %></h4>
     </div>
       <% recipe.recipe_foods.each do |recipe_food| %>
         <% price = price + recipe_food.quantity * recipe_food.food.price %>
       <% end %>
     <div>
       <p>Total Food Items: <%= recipe.recipe_foods.length %></p>
-      <p>Total Price: <%= price %></p>
+      <p>Total Price: $<%= price %></p>
     </div>
       <% price = 0 %>
 </div>

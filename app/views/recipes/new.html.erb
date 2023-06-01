@@ -16,8 +16,8 @@
           <%= form.text_area :description, class: 'mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border', placeholder: 'This soup is from French and...' %>
 
           <div class="flex items-center justify-start w-full">
-                <%= form.submit "Add recipe", class: 'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-600 transition duration-150 ease-in-out hover:bg-green-500 bg-green-600 rounded text-white px-8 py-2 text-sm' %>
-                <button class="focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm" onclick="modalHandler()">Cancel</button>
+                <%= form.submit "Add recipe", class: 'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-600 transition duration-150 ease-in-out hover:bg-green-500 bg-green-600 rounded text-white px-8 py-2 text-sm cursor-pointer' %>
+                <%= link_to "Cancel", recipes_path, class:"focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-red-400 ml-3 bg-red-600 transition duration-150 text-white ease-in-out hover:border-red-400 hover:bg-red-500 border rounded px-8 py-2 text-sm" %>
           </div>
       </div>
   </div>
