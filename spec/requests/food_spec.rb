@@ -3,7 +3,7 @@ require 'faker'
 
 RSpec.describe 'Food', type: :request do
   describe 'GET #index' do
-  let!(:food2) { Food.create(name: 'Food Name', measurement_unit: 'kg', price: 200, quantity: 2, user: @user) }
+    let!(:food2) { Food.create(name: 'Food Name', measurement_unit: 'kg', price: 200, quantity: 2, user: @user) }
     before do
       @user = User.create(
         name: Faker::Name.first_name,
@@ -18,13 +18,9 @@ RSpec.describe 'Food', type: :request do
       @price = Faker::Number.number(digits: 10)
       @quantity = Faker::Number.between(from: 1, to: 10)
 
-      @food = Food.create(name:@name,measurement_unit:@measurement_unit, price:@price,quantity:@quantity, user:@user)
+      @food = Food.create(name: @name, measurement_unit: @measurement_unit, price: @price, quantity: @quantity,
+                          user: @user)
 
-        # puts @food.valid?
-        # puts @food.persited?
-        # puts @user.valid?
-        # puts @user.persited?
-    #   puts  @food.errors.full_messages
       get foods_path
     end
 
@@ -41,12 +37,12 @@ RSpec.describe 'Food', type: :request do
     end
 
     it 'Should include new recipe' do
-        expect(assigns(:foods)).to match_array([@food])
+      expect(assigns(:foods)).to match_array([@food])
     end
 
     it 'Should accept params and increase recipes counter' do
       food_params = {
-        id:3,
+        id: 3,
         name: 'soupe al onion',
         measurement_unit: 'kg',
         price: 200,
@@ -57,11 +53,11 @@ RSpec.describe 'Food', type: :request do
     end
 
     it 'deletes the food' do
-        food2 = Food.create(name: 'Food Name', measurement_unit: 'Unit', price: 400, quantity: 2, user: @user)
-        expect {
-          delete food_path(food2.id)
-        }.to change(Food, :count).by(-1)
-        expect(response).to redirect_to(foods_path)
+      food2 = Food.create(name: 'Food Name', measurement_unit: 'Unit', price: 400, quantity: 2, user: @user)
+      expect do
+        delete food_path(food2.id)
+      end.to change(Food, :count).by(-1)
+      expect(response).to redirect_to(foods_path)
     end
   end
 end
