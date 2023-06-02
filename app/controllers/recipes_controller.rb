@@ -1,6 +1,7 @@
 class RecipesController < ApplicationController
   before_action :authenticate_user!, except: %i[show details]
   load_and_authorize_resource
+  skip_load_and_authorize_resource only: :details
   def index
     @recipes = Recipe.where(user: current_user).order(created_at: :desc)
   end
