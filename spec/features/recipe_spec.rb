@@ -2,7 +2,6 @@ require 'rails_helper'
 require 'faker'
 
 RSpec.feature 'Recipe', type: :feature do
-  # View test cases will be written here
   before do
     @user = User.create(
       name: Faker::Name.first_name,
@@ -48,13 +47,13 @@ RSpec.feature 'Recipe', type: :feature do
 
   scenario 'User can delete a recipe' do
     @new_recipe = Recipe.create(name: Faker::Food.dish,
-    preparation_time: Faker::Time.between(from: DateTime.now,
-                                          to: DateTime.now + 7),
-    cooking_time: Faker::Time.between(from: DateTime.now,
-                                      to: DateTime.now + 7),
-    description: Faker::Lorem.paragraph,
-    public: true,
-    user: @user)
+                                preparation_time: Faker::Time.between(from: DateTime.now,
+                                                                      to: DateTime.now + 7),
+                                cooking_time: Faker::Time.between(from: DateTime.now,
+                                                                  to: DateTime.now + 7),
+                                description: Faker::Lorem.paragraph,
+                                public: true,
+                                user: @user)
 
     visit '/recipes'
     expect(page).to have_content(@new_recipe.name)
