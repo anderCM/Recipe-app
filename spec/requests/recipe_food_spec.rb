@@ -10,14 +10,14 @@ RSpec.describe 'Recipe Food', type: :request do
         password: Faker::Internet.password
       )
 
-      @recipe = Recipe.create(name: Faker::Food.dish,
-                              preparation_time: Faker::Time.between(from: DateTime.now,
+      @new_recipe = Recipe.create(name: Faker::Food.dish,
+                                  preparation_time: Faker::Time.between(from: DateTime.now,
+                                                                        to: DateTime.now + 7),
+                                  cooking_time: Faker::Time.between(from: DateTime.now,
                                                                     to: DateTime.now + 7),
-                              cooking_time: Faker::Time.between(from: DateTime.now,
-                                                                to: DateTime.now + 7),
-                              description: Faker::Lorem.paragraph,
-                              public: Faker::Boolean.boolean,
-                              user: @user)
+                                  description: Faker::Lorem.paragraph,
+                                  public: true,
+                                  user: @user)
 
       get public_recipes_path
     end
@@ -35,7 +35,7 @@ RSpec.describe 'Recipe Food', type: :request do
     end
 
     it 'Should include new recipe' do
-      expect(assigns(:recipe_names)).to include(@recipe)
+      expect(assigns(:recipe_names)).to include(@new_recipe)
     end
   end
 end

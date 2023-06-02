@@ -16,9 +16,8 @@ RSpec.feature 'Recipe Food', type: :feature do
                              cooking_time: Faker::Time.between(from: DateTime.now,
                                                                to: DateTime.now + 7),
                              description: Faker::Lorem.paragraph,
-                             public: Faker::Boolean.boolean,
+                             public: true,
                              user: @user)
-
     visit new_user_session_path
     fill_in 'Email', with: @user.email
     fill_in 'Password', with: @user.password

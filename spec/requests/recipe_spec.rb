@@ -20,7 +20,6 @@ RSpec.describe 'Recipe', type: :request do
                               description: Faker::Lorem.paragraph,
                               public: Faker::Boolean.boolean,
                               user: @user)
-
       get recipes_path
     end
 
@@ -66,21 +65,21 @@ RSpec.describe 'Recipe', type: :request do
 
     it 'should display food inside recipe' do
       food = Food.create(name: Faker::Food.unique.ingredient,
-                    measurement_unit: Faker::Food.measurement,
-                    price: Faker::Number.decimal(l_digits: 2),
-                    quantity: Faker::Number.between(from: 1, to: 10),
-                    user: @user)
+                         measurement_unit: Faker::Food.measurement,
+                         price: Faker::Number.number(digits: 2),
+                         quantity: Faker::Number.between(from: 1, to: 10),
+                         user: @user)
 
       food2 = Food.create(name: Faker::Food.unique.ingredient,
-                    measurement_unit: Faker::Food.measurement,
-                    price: Faker::Number.decimal(l_digits: 2),
-                    quantity: Faker::Number.between(from: 1, to: 10),
-                    user: @user)
-      RecipeFood.create(recipe: @recipe, food: , quantity: 1)
-      RecipeFood.create(recipe: @recipe, food: food2, quantity: 1)
+                          measurement_unit: Faker::Food.measurement,
+                          price: Faker::Number.number(digits: 2),
+                          quantity: Faker::Number.between(from: 1, to: 10),
+                          user: @user)
+      recipe_food = RecipeFood.create(recipe: @recipe, food:, quantity: 1)
+      recipe_food2 = RecipeFood.create(recipe: @recipe, food: food2, quantity: 1)
 
       get recipe_path(@recipe)
-      expect(assigns(:recipe_foods)).to match_array([recipe_food1, recipe_food2])
+      expect(assigns(:recipe_foods)).to match_array([recipe_food, recipe_food2])
     end
   end
 end
