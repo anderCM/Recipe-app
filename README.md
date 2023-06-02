@@ -124,7 +124,7 @@ To run tests, run the following command:
 👤 **Anderson**
 
 - GitHub: [@Anderson](https://github.com/anderCM)
-- LinkedIn: [Anderson](https://www.linkedin.com/in//)
+- LinkedIn: [Anderson](https://www.linkedin.com/in/andersoncanales/)
 
 👤 **Jakaria Jishan**
 
