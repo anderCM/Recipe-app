@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'faker'
 
 RSpec.feature 'Recipe Food', type: :feature do
   # View test cases will be written here
