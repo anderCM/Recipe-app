@@ -1,0 +1,25 @@
+<div class="container mx-auto">
+  <h2 class="text-2xl font-bold text-center text-gray-700">Shopping list</h2>
+  <div class="grid grid-cols-2 gap-4">
+  <p class="text-center text-xl font-bold text-gray-600">Ammount of food items to by: <%= @recipe_foods.length %></p>
+  <p class="text-center text-xl font-bold text-gray-600">Total value of food needed: <%= @total_price %></p>
+  </div>
+  <table class="table-fixed rounded my-4 mx-auto w-3/6">
+  <thead class="bg-neutral-800">
+    <tr class="text-white">
+      <th>Food</th>
+      <th>Quantity</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @recipe_foods.each do |food| %>
+      <tr class="border text-center font-light transition duration-300 ease-in-out bg-gray-800 hover:bg-gray-700 dark:border-gray-500 dark:hover:bg-gray-600 text-white">
+        <td><%= food.food.name %></td>
+        <td><%= food.quantity %></td>
+        <td>$ <%= food.quantity * food.food.price %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

@@ -1,0 +1,68 @@
+
+<h2 class="text-2xl font-bold text-center text-gray-700">recipe Details </h2>
+<div class="flex justify-between items-center">
+  <div class="my-5">
+      <p class="text-gray-600">Preparation Time: <%= ((Time.current - @recipe.preparation_time.to_time) / 1.hour).to_i %> hr</p>
+      <p class="text-gray-600 my-5">Cooking Time: <%= ((Time.current - @recipe.cooking_time.to_time) / 1.hour).to_i %> hr </p>
+      <P class="text-gray-600 text-sm " > <%= @recipe.description %> </p>
+  </div>
+
+  <% if can? :destroy, @recipe %>
+    <div class="flex justify-end my-5">
+    <%= form_for @recipe, url: update_toggle_recipe_path(@recipe), method: :patch, id: "toggle-form" do |f| %>
+  <label class="flex items-center relative w-max select-none">
+    <span class="text-lg font-bold mr-3">Public?: </span>
+    <%= check_box_tag :toggle, 1, @recipe.public, unchecked_value: 0, class: "appearance-none transition-colors cursor-pointer w-14 h-7 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black focus:ring-green-500 bg-red-500 bg-green-600", id: "toggle-checkbox" %>
+    <span class="absolute font-medium text-xs uppercase right-1 cursor-pointer text-black">  </span>
+    <span class="absolute font-medium text-xs uppercase right-8 cursor-pointer text-black">  </span>
+    <span class="w-7 h-7 right-7 absolute rounded-full transform transition-transform bg-gray-200"></span>
+  </label>
+<% end %>
+
+  </div>
+  <% end %>
+</div>
+
+<div class="flex justify-between mt-10 mb-2">
+    <%= link_to "Generate shopping list" , details_recipe_path(@recipe), class: "focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-600 transition duration-150 ease-in-out hover:bg-green-500 bg-green-600 rounded text-white px-8 py-2 text-sm" %>
+    <% if can? :destroy, @recipe %>
+      <%= link_to "Add ingredient" , new_ingredient_recipe_path(@recipe.id), class: "focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-600 transition duration-150 ease-in-out hover:bg-green-500 bg-green-600 rounded text-white px-8 py-2 text-sm" %>
+    <% end %>
+</div>
+    <hr class="border-stone-400 my-5"/>
+
+<table class="w-full text-center border-separate border-spacing-4 bg-gray-800 text-white rounded ">
+  <thead>
+    <tr>
+      <th>Food</th>
+      <th>Quantity</th>
+      <th>Value</th>
+      <% if can? :destroy, @recipe%>
+      <th>Action</th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @foods.each do |food| %>
+      <tr>
+          <td><%= food.name %></td>
+          <td><%= food.quantity %></td>
+          <td>$<%= food.price * food.quantity %></td>
+          <% if can? :destroy, @recipe %>
+            <td ><%= button_to "Delete", "/recipes/#{@recipe.id}/destroy/#{food.id}", method: :delete, data: {confirm: "Are you sure?"}, class:"bg-red-600 w-full text-white rounded" %></td>
+          <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const toggleCheckbox = document.getElementById('toggle-checkbox');
+
+  toggleCheckbox.addEventListener('change', function() {
+    const form = toggleCheckbox.closest('form');
+    form.submit();
+  });
+});
+
+</script>
