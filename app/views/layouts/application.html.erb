@@ -12,14 +12,17 @@
   </head>
 
   <body class="bg-gray-300">
-    <main class="w-3/4 mx-auto">
+    <main class="mx-auto">
+
       <%= render 'shared/user_links' %>
       <% flash.each do |type, msg| %>
         <div class="rounded border border-solid border-2 shadow-md my-5 p-5" role="alert">
           <%= msg %>
         </div>
       <% end %>
-      <%= yield %>
+<div class="w-3/4 mx-auto">
+  <%= yield %>
+</div>
     </main>
   </body>
 </html>
