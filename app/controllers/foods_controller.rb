@@ -10,7 +10,6 @@ class FoodsController < ApplicationController
   end
 
   def create
-    # authorize! :create, @food
     @food = Food.new(food_params)
     @food.user_id = current_user.id
 
