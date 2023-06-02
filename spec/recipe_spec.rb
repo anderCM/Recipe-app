@@ -15,7 +15,6 @@ describe Recipe, type: :model do
     @public = Faker::Boolean.boolean
   end
 
-
   it 'is invalid without name' do
     recipe = Recipe.new(name: nil)
     recipe.valid?
