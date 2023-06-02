@@ -81,5 +81,32 @@ RSpec.describe 'Recipe', type: :request do
       get recipe_path(@recipe)
       expect(assigns(:recipe_foods)).to match_array([recipe_food, recipe_food2])
     end
+
+    it 'should destroy a association between recipe and food' do
+      food = Food.create(name: Faker::Food.unique.ingredient,
+                         measurement_unit: Faker::Food.measurement,
+                         price: Faker::Number.number(digits: 2),
+                         quantity: Faker::Number.between(from: 1, to: 10),
+                         user: @user)
+      RecipeFood.create(food:, recipe: @recipe, quantity: 5)
+
+      expect { delete "/recipes/#{@recipe.id}/destroy/#{food.id}" }.to change(RecipeFood, :count).by(-1)
+    end
+
+    it 'should destroy a recipe' do
+      expect { delete recipe_path(@recipe) }.to change(Recipe, :count).by(-1)
+    end
+
+    it 'should include current recipe' do
+      food = Food.create(name: Faker::Food.unique.ingredient,
+                         measurement_unit: Faker::Food.measurement,
+                         price: Faker::Number.number(digits: 2),
+                         quantity: Faker::Number.between(from: 1, to: 10),
+                         user: @user)
+      recipe_food = RecipeFood.create(food:, recipe: @recipe, quantity: 5)
+
+      get details_recipe_path(@recipe), params: { id: recipe_food.id }
+      expect(assigns(:recipe)).to eq(@recipe)
+    end
   end
 end
